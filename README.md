@@ -1,11 +1,29 @@
 # BilouNook
 
+<p align="center">
+  <strong>Your notch, with everything in it.</strong><br>
+  A personal macOS notch utility: now playing, calendar, files and a timer, one hover away.
+</p>
+
 BilouNook is a personal macOS notch utility. It draws a notch-anchored panel
 that can open on hover or click, hosts small modules, and shows now-playing
 information.
 
 This is a personal project, not a published product. It is accurate to the code
 in this repository today.
+
+## Demo
+
+<p align="center">
+  <a href="docs/media/demo.mp4">
+    <img src="docs/assets/app-icon-1024.png" width="320" alt="BilouNook demo — click to play the video">
+  </a>
+</p>
+
+<p align="center">
+  <a href="docs/media/demo.mp4"><strong>▶ Watch the demo (0:26)</strong></a><br>
+  <sub>1920×1080 · H.264 · 3.2 MB — opens in the GitHub video player</sub>
+</p>
 
 ## Requirements
 
@@ -86,10 +104,6 @@ Hotkeys are registered in DEBUG builds:
     Vendor/MediaRemoteAdapter/ Vendored MediaRemote bridge (see VENDOR.md)
     scripts/                   Project check, build, smoke, icon helpers
     docs/                      Documentation, design specs and media assets
-
-## Demo
-
-[▶ Watch the demo video](docs/media/demo.mp4)
 
 ## Install
 

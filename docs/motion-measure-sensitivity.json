@@ -1,0 +1,38 @@
+{
+  "close" : {
+    "container25Median" : 43.545624997932464,
+    "container50Median" : 76.904958332306705,
+    "container95Median" : 226.74787500000093,
+    "content50Median" : 163.76612500243937,
+    "controlsMedian" : 163.76612500243937,
+    "firstChangeMedian" : 8.7358333330485038,
+    "firstContentMedian" : 163.76612500243937,
+    "frameAbove3" : 0,
+    "frameAbove15" : 0,
+    "frameMax" : 18.645208332600305,
+    "frameP50" : 0.29670833100681193,
+    "frameP95" : 16.91091666725697,
+    "mainThreadP50" : 0.0042916690290439874,
+    "mainThreadP95" : 0.0074166673584841192,
+    "overshootMax" : 0.00031093811912796809
+  },
+  "label" : "sensitivity",
+  "open" : {
+    "container25Median" : 100.1429999996617,
+    "container50Median" : 149.89441666693892,
+    "container95Median" : 333.25145833441638,
+    "content50Median" : 116.31483333258075,
+    "controlsMedian" : 166.34487500050454,
+    "firstChangeMedian" : 49.898666668013902,
+    "firstContentMedian" : 83.010708331130445,
+    "frameAbove3" : 0,
+    "frameAbove15" : 0,
+    "frameMax" : 23.087249999662163,
+    "frameP50" : 16.665416667819954,
+    "frameP95" : 17.387708332535112,
+    "mainThreadP50" : 0.0025416666176170111,
+    "mainThreadP95" : 0.0045000015234109014,
+    "overshootMax" : 0.096206415014535196
+  },
+  "refreshHz" : 60
+}

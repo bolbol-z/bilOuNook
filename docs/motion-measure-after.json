@@ -1,0 +1,38 @@
+{
+  "close" : {
+    "container25Median" : 76.945666667597834,
+    "container50Median" : 110.2605833330017,
+    "container95Median" : 249.90345833430183,
+    "content50Median" : 163.2045416663459,
+    "controlsMedian" : 163.2045416663459,
+    "firstChangeMedian" : 43.615208331175381,
+    "firstContentMedian" : 163.2045416663459,
+    "frameAbove3" : 0,
+    "frameAbove15" : 1,
+    "frameMax" : 33.754874999431195,
+    "frameP50" : 0.25529166669002734,
+    "frameP95" : 16.829500000312692,
+    "mainThreadP50" : 0.004250003257766366,
+    "mainThreadP95" : 0.0076249998528510332,
+    "overshootMax" : 0
+  },
+  "label" : "after",
+  "open" : {
+    "container25Median" : 82.885916664963588,
+    "container50Median" : 116.20654166472377,
+    "container95Median" : 216.69666666639387,
+    "content50Median" : 93.98483333279728,
+    "controlsMedian" : 127.32595833222149,
+    "firstChangeMedian" : 49.695875000907108,
+    "firstContentMedian" : 66.873541665700031,
+    "frameAbove3" : 0,
+    "frameAbove15" : 0,
+    "frameMax" : 22.910916664841352,
+    "frameP50" : 16.663416667142883,
+    "frameP95" : 17.255916667636484,
+    "mainThreadP50" : 0.0026250017981510609,
+    "mainThreadP95" : 0.0052083341870456934,
+    "overshootMax" : 0.39909185548651749
+  },
+  "refreshHz" : 60
+}

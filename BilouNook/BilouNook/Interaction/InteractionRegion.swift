@@ -1,0 +1,117 @@
+import AppKit
+
+enum ZoneMath {
+    static let topExtension: CGFloat = 20
+
+    static func contains(_ rect: NSRect, _ p: NSPoint) -> Bool {
+        return p.x >= rect.minX && p.x <= rect.maxX && p.y >= rect.minY && p.y <= rect.maxY
+    }
+
+    #if DEBUG
+    static func debugSelfCheck() {
+        let rect = NSRect(x: 0, y: 0, width: 10, height: 10)
+        let onMaxY = contains(rect, NSPoint(x: 5, y: rect.maxY))
+        let oneAbove = contains(rect, NSPoint(x: 5, y: rect.maxY + 1))
+        MouseLog.write("ZoneMath self-check onMaxY_inside=\(onMaxY ? "PASS" : "FAIL") maxY_plus1_outside=\(oneAbove ? "FAIL" : "PASS")")
+    }
+    #endif
+}
+
+#if DEBUG
+enum MouseLog {
+    static let directory: URL = {
+        let library = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first
+            ?? FileManager.default.temporaryDirectory
+        return library.appendingPathComponent("Logs/BilouNook", isDirectory: true)
+    }()
+
+    static var path: String {
+        directory.appendingPathComponent("bilounook_mouse.log").path
+    }
+
+    private static let queue = DispatchQueue(label: "com.bilou.bilounook.mouselog")
+    private static let flushInterval: TimeInterval = 0.5
+    private static let enabled = ProcessInfo.processInfo.environment["BILOUNOOK_NOTCH_DEBUG"] == "1"
+    private static var buffer: [String] = []
+    private static var flushScheduled = false
+
+    static func write(_ message: String) {
+        guard enabled else { return }
+        if MotionRecorder.shared.isMeasuring { return }
+        let line = String(format: "%.3f ", Date().timeIntervalSince1970) + message + "\n"
+        queue.async {
+            buffer.append(line)
+            guard !flushScheduled else { return }
+            flushScheduled = true
+            queue.asyncAfter(deadline: .now() + flushInterval) {
+                flushScheduled = false
+                drainLocked()
+            }
+        }
+    }
+
+    private static func drainLocked() {
+        guard !buffer.isEmpty else { return }
+        let payload = buffer.joined()
+        buffer.removeAll()
+        guard let data = payload.data(using: .utf8) else { return }
+        try? FileManager.default.createDirectory(
+            at: directory,
+            withIntermediateDirectories: true
+        )
+        if let handle = FileHandle(forWritingAtPath: path) {
+            handle.seekToEndOfFile()
+            handle.write(data)
+            try? handle.close()
+        } else {
+            try? data.write(to: URL(fileURLWithPath: path), options: .atomic)
+        }
+    }
+}
+#endif
+
+enum InteractionRegion {
+    static func hotZone(screen: NSScreen, notchGeom: NotchGeometry) -> NSRect {
+        hotZone(screenFrame: screen.frame, notchGeom: notchGeom)
+    }
+
+    static func hotZone(screenFrame: CGRect, notchGeom: NotchGeometry) -> NSRect {
+        return TriggerRectCalculator.rect(
+            screenFrame: screenFrame,
+            geometry: notchGeom,
+            liveActivityWing: currentLiveActivityWing(),
+            paddingX: CGFloat(SettingsStore.shared.hotPaddingX),
+            paddingBelow: CGFloat(SettingsStore.shared.hotPaddingBelow)
+        )
+    }
+
+    static func currentLiveActivityWing() -> CGFloat {
+        guard Thread.isMainThread else { return 0 }
+        return MainActor.assumeIsolated { IslandModel.shared.isActive ? LiveActivityLayout.horizontalWing : 0 }
+    }
+
+    static func interactiveRect(for phase: NotchPhase, screen: NSScreen, notchGeom: NotchGeometry) -> NSRect {
+        interactiveRect(for: phase, screenFrame: screen.frame, notchGeom: notchGeom)
+    }
+
+    static func interactiveRect(for phase: NotchPhase, screenFrame: CGRect, notchGeom: NotchGeometry) -> NSRect {
+        let panelTop = screenFrame.maxY
+        switch phase {
+        case .opening, .open:
+            let size = ModuleRegistry.shared.activeModule?.preferredSize ?? CGSize(width: NotchPresets.open.w, height: NotchPresets.open.h)
+            let width = size.width + 12
+            let height = size.height + ZoneMath.topExtension
+            return NSRect(x: screenFrame.midX - width / 2, y: panelTop - height, width: width, height: height)
+        case .closing:
+            let size = ModuleRegistry.shared.activeModule?.preferredSize ?? CGSize(width: NotchPresets.open.w, height: NotchPresets.open.h)
+            let width = size.width + 24 // stay-open region slightly larger
+            let height = size.height + ZoneMath.topExtension + 12
+            return NSRect(x: screenFrame.midX - width / 2, y: panelTop - height, width: width, height: height)
+        case .closed:
+            let notch = notchGeom.closedMetrics(isLiveActivityActive: false)
+            let width = notch.w + 6
+            let height = notch.h + ZoneMath.topExtension
+            return NSRect(x: screenFrame.midX - width / 2, y: panelTop - height, width: width, height: height)
+        }
+    }
+}

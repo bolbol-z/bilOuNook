@@ -1,0 +1,138 @@
+# =============================================================================
+# BilouNook — .gitignore
+# macOS SwiftUI/AppKit app (Xcode project) + vendored MediaRemoteAdapter (Make/CMake)
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# 1. macOS system files
+# ---------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+Icon?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---------------------------------------------------------------------------
+# 2. Xcode user-specific state (personal layout, preferences, usernames)
+#    xcshareddata/ (shared schemes) is intentionally NOT ignored.
+# ---------------------------------------------------------------------------
+xcuserdata/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+
+# ---------------------------------------------------------------------------
+# 3. Build outputs, derived data, archives
+# ---------------------------------------------------------------------------
+build/
+Build/
+DerivedData/
+.build/
+*.app
+*.ipa
+*.dSYM/
+*.dSYM.zip
+*.xcarchive
+*.xcresult
+*.hmap
+*.o
+*.d
+*.dia
+*.pcm
+*.pch
+*.gcno
+*.gcda
+*.profraw
+
+# ---------------------------------------------------------------------------
+# 4. Swift Package Manager (Package.resolved stays tracked for reproducible builds)
+# ---------------------------------------------------------------------------
+.swiftpm/
+/Packages/
+
+# ---------------------------------------------------------------------------
+# 5. Vendored MediaRemoteAdapter build products (CMake / Make)
+# ---------------------------------------------------------------------------
+Vendor/MediaRemoteAdapter/build/
+Vendor/MediaRemoteAdapter/cmake-build-*/
+Vendor/MediaRemoteAdapter/CMakeCache.txt
+Vendor/MediaRemoteAdapter/CMakeFiles/
+
+# ---------------------------------------------------------------------------
+# 6. IDE / editor / AI-agent tooling (local only)
+# ---------------------------------------------------------------------------
+.idea/
+.vscode/
+!Vendor/MediaRemoteAdapter/.vscode/
+*.swp
+*.swo
+*~
+.freebuff/
+.opencode/
+opencode.json
+.claude/
+.cursor/
+
+# ---------------------------------------------------------------------------
+# 7. Python tooling caches (scripts/*.py)
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+
+# ---------------------------------------------------------------------------
+# 8. Secrets & credentials — never commit
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key
+*.cer
+*.mobileprovision
+*.provisionprofile
+*.keychain
+*.keychain-db
+secrets.plist
+GoogleService-Info.plist
+credentials*.json
+Secrets.xcconfig
+*.local.xcconfig
+
+# ---------------------------------------------------------------------------
+# 9. Logs, crash reports, local data, profiling traces
+# ---------------------------------------------------------------------------
+*.log
+*.crash
+*.ips
+*.trace
+*.sqlite
+*.sqlite3
+*.db
+*.realm
+*.realm.lock
+
+# ---------------------------------------------------------------------------
+# 10. Local working files in the repository root (code dumps, notes, reports)
+# ---------------------------------------------------------------------------
+/swift_code*
+/code_swift*
+/what_i_did.txt
+/toc.md
+/A4_content.md
+/BilouNook_final.md
+/bilou_nook_analyse.md
+/CLEANUP_REPORT.md

@@ -20,6 +20,29 @@ in this repository today.
   </a>
 </p>
 
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <a href="docs/media/demo.mp4"><img src="docs/assets/demo/calendar.png" width="440" alt="Calendar module: month strip, week strip and today's events"></a><br>
+      <sub><strong>Calendar</strong> — your week at a glance</sub>
+    </td>
+    <td align="center" width="50%">
+      <a href="docs/media/demo.mp4"><img src="docs/assets/demo/media.png" width="440" alt="Now playing module: artwork, track title, transport and seek bar"></a><br>
+      <sub><strong>Now playing</strong> — artwork, transport and seek</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <a href="docs/media/demo.mp4"><img src="docs/assets/demo/files-tray.png" width="440" alt="Files tray holding a dropped file beside an AirDrop target"></a><br>
+      <sub><strong>Files tray</strong> — drop a file, AirDrop it out</sub>
+    </td>
+    <td align="center" width="50%">
+      <a href="docs/media/demo.mp4"><img src="docs/assets/demo/timer.png" width="440" alt="Timer and Pomodoro module showing a 25 minute focus ring"></a><br>
+      <sub><strong>Timer</strong> — focus sessions and Pomodoro</sub>
+    </td>
+  </tr>
+</table>
+
 <p align="center">
   <a href="docs/media/demo.mp4"><strong>▶ Watch the demo (0:26)</strong></a><br>
   <sub>1920×1080 · H.264 · 3.2 MB — opens in the GitHub video player</sub>
